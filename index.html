@@ -13,9 +13,12 @@
 
   <style>
     body {
-      background-image: url('images/background.jpg');
+
+      background: url('images/background.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-repeat: no-repeat;
+      height: 100%;
+      overflow: hidden;
+
     }
   </style>
 </head>
@@ -23,31 +26,74 @@
 
 <body>
 
-  <h1> The Land Of Eden: <br> The Land Of A Billion Minds <br>
+  <h1> <br> The Land Of Eden: <br> The Land Of A Billion Minds <br> <br> </br>
+
+    </div>
     <form autocomplete="off">
       <div>
-        <input type="text" id="input" placeholder="What would make the place a perfect world?" />
+        <input type="text" id="input" placeholder="What would make the world a perfect place?" />
+
       </div>
       <div id="entry">
       </div>
-      <ul class="list"></ul>
+        <ul class="list"></ul>
+      <div id=buttons> </div>
+
+
     </form>
+
+    <div id= "buttons">
+    <button id ="topanswers" type="button"> Top Answers</button> <br>
+
+    <button id ="viewall" type="button"> View All</button>
+</div>
 
     <script>
       let answers = [ //I will be adding more data as I go. (currently asking people for answers)
         "no racism",
         "no antisemitism",
         "no violence",
-        "renewable source energy",
-        "more green spaces",
-        "gender equality",
         "no animal abuse",
-        "vegan living",
+        "no animal abuse",
         "no discrimination",
         "no war",
         "no hate crime",
-        "sustainable living",
+        "no more covid",
+        "no more homeless people",
+        "no guns",
+        "no diseases",
+        "no terrorism",
+        "no drugs",
+
+        "more green spaces",
+        "more green spaces",
         "more handicap access",
+        "more doctors",
+        "more Indigenous awareness",
+        "more resources for mental health",
+        "more diversity",
+
+        "less taxes",
+        "less poverty",
+        "less pollution",
+        "less divorces",
+        "less unemployment rate",
+
+
+        "better health care system",
+        "better education",
+        "better rights",
+
+
+        "gender equality",
+        "renewable source energy",
+        "vegan living",
+        "sustainable living",
+        "higher minimum wage",
+        "a safer environment",
+        "peace",
+        "freedom",
+
       ];
 
 
@@ -86,7 +132,17 @@
       function displayAnswers(value) {
         input.value = value;
 
-        document.getElementById('entry').innerHTML = document.getElementById('entry').innerHTML + value + "<br>";
+        var posY=Math.floor(Math.random() *800) + 1;
+        var posX=Math.floor(Math.random() *800) + 1;
+        const box = document.createElement("div");
+        box.id = 'entry' + Date.now();
+        //box.id = "box";
+        box.innerHTML=value;
+        box.classList.add('entry');
+
+        box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;');
+        document.getElementById('entry').appendChild(box);
+        //document.getElementById('entry').innerHTML = document.getElementById('entry').innerHTML + value + "<br>";
         document.getElementById('input').value = '';
 
         removeElements();
@@ -99,6 +155,10 @@
           item.remove();
         });
       }
+
+
+
+
     </script>
 </body>
 

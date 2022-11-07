@@ -1,6 +1,7 @@
 h1 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
   text-align: center;
+
 }
 
 input {   /* this is for the user's input in the search bar */
@@ -10,18 +11,21 @@ input {   /* this is for the user's input in the search bar */
   color: black;
   background-color: white;
   border-radius: 10px;
-  border-style: groove;
   padding-left: 10px;
+  border-color: black;
+  border-style: solid;
 
 }
 
 
-* {
+* {  /* this is for the placeholder */
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
   position: center;
+
+
 }
 
 form {
@@ -30,11 +34,13 @@ form {
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
+  margin-top: auto;
 
 }
 
 input[type="text"] { /* this is for the placeholder */
   width: 100%;
+  height: 40px;
   padding: 15px 10px;
   border: none;
   border-bottom: 1px solid #645979;
@@ -42,14 +48,14 @@ input[type="text"] { /* this is for the placeholder */
   border-radius: 5px 5px 0 0;
   background-color: #ffffff;
   font-size: 16px;
+  background-color: white;
+  border-radius:10px;
 
 
 }
 
 ul {
   list-style: none;
-
-
 }
 
 
@@ -58,14 +64,13 @@ ul {
   background-color: #ffffff;
   border-radius: 0 0 5px 5px;
 
+
 }
 
 .list-items {
   padding: 10px 5px;
   font-size: 15px;
-  color: green;
-
-
+  color: black;
 
 }
 
@@ -73,9 +78,52 @@ ul {
   background-color: #dddddd;
 }
 
-#entry{
-  background-color: green;
+
+#topanswers{
+  background-color: white;
   width: 100px;
-  height:100px;
-  font-size: 15px;
+  height: 40px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 10px;
+
+}
+#topanswers:hover {
+background-color:#6DD1DC;
+}
+
+#viewall{
+  background-color: #white;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+#viewall:hover {
+  background-color:#6DD1DC;
+}
+
+#buttons{
+text-align: left;
+padding-bottom: 10px;
+position: absolute;
+width: 50%;
+margin-top: 280px;
+margin-left: 40px;
+
+}
+
+.entry{
+  background-color: green;
+  border-radius: 10px;
+  width: 130px;
+  height: 70px;
+  font-size: 14px;
+  padding-top: 15px;
+  position: absolute;
+  border-color: black;
+border-style: solid;
+
 }
