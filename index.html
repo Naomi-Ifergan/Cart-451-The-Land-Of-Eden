@@ -54,7 +54,6 @@
         "no antisemitism",
         "no violence",
         "no animal abuse",
-        "no animal abuse",
         "no discrimination",
         "no war",
         "no hate crime",
@@ -64,14 +63,16 @@
         "no diseases",
         "no terrorism",
         "no drugs",
+        "no police brutality",
 
-        "more green spaces",
         "more green spaces",
         "more handicap access",
         "more doctors",
         "more Indigenous awareness",
         "more resources for mental health",
         "more diversity",
+        "more hybrid vehicles",
+        "more comunity gardens",
 
         "less taxes",
         "less poverty",
@@ -83,15 +84,26 @@
         "better health care system",
         "better education",
         "better rights",
+        "better government",
+        "better public transportation",
+
 
 
         "gender equality",
         "renewable source energy",
         "vegan living",
+
         "sustainable living",
+        "slow fashion",
+
         "higher minimum wage",
+
         "a safer environment",
+        "all lives matter",
+
         "peace",
+        "pet friendly environment",
+
         "freedom",
 
       ];
@@ -132,7 +144,7 @@
       function displayAnswers(value) {
         input.value = value;
 
-        var posY=Math.floor(Math.random() *800) + 1;
+        var posY=Math.floor(Math.random() *800) + 1; // we give it a max of 800 so that it can be seen on the smallest computer screen which is aprox that size.
         var posX=Math.floor(Math.random() *800) + 1;
         const box = document.createElement("div");
         box.id = 'entry' + Date.now();
@@ -140,7 +152,7 @@
         box.innerHTML=value;
         box.classList.add('entry');
 
-        box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;');
+        box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;'+'left:'+posX+'px; right:'+posY+'px;');
         document.getElementById('entry').appendChild(box);
         //document.getElementById('entry').innerHTML = document.getElementById('entry').innerHTML + value + "<br>";
         document.getElementById('input').value = '';
