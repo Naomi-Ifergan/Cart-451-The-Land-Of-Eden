@@ -9,6 +9,11 @@
   <!--Scripts-->
   <script src="script.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <!-- ResponsiveVoice -->
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<!-- annyang -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=dxLA1Br5"></script>
 
 
   <style>
@@ -42,11 +47,6 @@
 
     </form>
 
-    <div id= "buttons">
-    <button id ="topanswers" type="button"> Top Answers</button> <br>
-
-    <button id ="viewall" type="button"> View All</button>
-</div>
 
     <script>
       let answers = [ //I will be adding more data as I go. (currently asking people for answers)
@@ -80,14 +80,11 @@
         "less divorces",
         "less unemployment rate",
 
-
         "better health care system",
         "better education",
         "better rights",
         "better government",
         "better public transportation",
-
-
 
         "gender equality",
         "renewable source energy",
@@ -111,6 +108,24 @@
 
       let sortedAnswers = answers.sort();
       let input = document.getElementById("input");
+
+      //voice activation with Annyang
+        if (annyang) {
+          var commands = {
+            answers: function() { //the player is giving the command to display their answer
+              listItem.innerHTML = word;
+              document.querySelector(".list").appendChild(listItem);
+             //when the command is said, answer is displayed on screen.
+              responsiveVoice.speak("Your answer has been submitted. Anything else?", "UK English Male")
+            }
+          }
+          // Add our commands to annyang
+          annyang.addCommands(commands);
+
+          // Start listening. You can call this here, or attach this call to an event, button, etc.
+          annyang.start();
+          annyang.debug(true);
+        }
 
 
       //Execute function on keyup
@@ -169,7 +184,23 @@
       }
 
 
+//Top Answers button
+  let topAnswersButton = document.createElement('button');
+  topAnswersButton.id = 'topAnswers';
+  topAnswersButton.innerHTML = 'Top Answers';
+  document.body.appendChild(topAnswersButton);
 
+  //View All button
+    let viewAllButton = document.createElement('button');
+    viewAllButton.id = 'viewAll';
+    viewAllButton.innerHTML = 'View All';
+    document.body.appendChild(viewAllButton);
+
+// function viewAll(){
+//   //display the value in array
+//   listItem.innerHTML = word;
+//   document.querySelector(".list").appendChild(listItem);
+// }
 
     </script>
 </body>
