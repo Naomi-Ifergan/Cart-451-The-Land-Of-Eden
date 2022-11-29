@@ -41,12 +41,24 @@
       </div>
       <div id="entry">
       </div>
+     
+     
+
       <div id="viewall">
+
+        <div class="ShowHide" id="viewallclosable">
+          <div id="right">
+            <a href="#" onclick="Hide(viewall);">X</a>
+          </div>
+          <div id="left">
+           
+        </div>
         <p> All submissions: <br> </p>
-        
+      </div>
+
       </div>
         <ul class="list"></ul>
-      <div id=buttons> </div>
+      <div id = buttons> </div>
 
 
     </form>
@@ -111,11 +123,15 @@
       ];
 
 
+
       let sortedAnswers = answers.sort();
       let input = document.getElementById("input");
 
       //Sound
       let sound = new Audio("sound/sound.mp3");
+
+      $("p").hide();
+      $("#viewallclosable").hide();
 
       //voice activation with Annyang
         if (annyang) {
@@ -208,20 +224,25 @@
     document.body.appendChild(viewAllButton);
 
  function viewAll(){
-//   //display the value in array
+  //display the value in array
   //listItem.innerHTML = word;
   //document.querySelector(".list").appendChild(listItem);
    let entrylist=document.querySelectorAll(".entry");
   for(var i=0; i<entrylist.length;i++)
   {
     entrylist[i].style.visibility="hidden";
+    $("p").show();
+    $("#viewallclosable").show();
+    
     document.getElementById('viewall').innerHTML = document.getElementById('viewall').innerHTML + entrylist[i].innerHTML+'<br>';
     //alert(entrylist[i].innerHTML);
   }
-//
+
  }
 
-
+ function Hide(HideID) { //instead of hiding it, it makes disappear therefore we can never access the view all section after closing it once.
+  HideID.style.display = "none"; 
+}
 
     </script>
 </body>
