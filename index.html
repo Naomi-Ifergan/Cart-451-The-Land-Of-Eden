@@ -41,6 +41,10 @@
       </div>
       <div id="entry">
       </div>
+      <div id="viewall">
+        <p> All submissions: <br> </p>
+        
+      </div>
         <ul class="list"></ul>
       <div id=buttons> </div>
 
@@ -102,6 +106,7 @@
         "pet friendly environment",
 
         "freedom",
+        "flying cars"
 
       ];
 
@@ -109,12 +114,17 @@
       let sortedAnswers = answers.sort();
       let input = document.getElementById("input");
 
+      //Sound
+      let sound = new Audio("sound/sound.mp3");
+
       //voice activation with Annyang
         if (annyang) {
           var commands = {
             answers: function() { //the player is giving the command to display their answer
               listItem.innerHTML = word;
               document.querySelector(".list").appendChild(listItem);
+              sound.play();
+              sound.volume = 0.1;
              //when the command is said, answer is displayed on screen.
               responsiveVoice.speak("Your answer has been submitted. Anything else?", "UK English Male")
             }
@@ -194,13 +204,24 @@
     let viewAllButton = document.createElement('button');
     viewAllButton.id = 'viewAll';
     viewAllButton.innerHTML = 'View All';
+    viewAllButton.setAttribute("onclick", "viewAll()");
     document.body.appendChild(viewAllButton);
 
-// function viewAll(){
+ function viewAll(){
 //   //display the value in array
-//   listItem.innerHTML = word;
-//   document.querySelector(".list").appendChild(listItem);
-// }
+  //listItem.innerHTML = word;
+  //document.querySelector(".list").appendChild(listItem);
+   let entrylist=document.querySelectorAll(".entry");
+  for(var i=0; i<entrylist.length;i++)
+  {
+    entrylist[i].style.visibility="hidden";
+    document.getElementById('viewall').innerHTML = document.getElementById('viewall').innerHTML + entrylist[i].innerHTML+'<br>';
+    //alert(entrylist[i].innerHTML);
+  }
+//
+ }
+
+
 
     </script>
 </body>
