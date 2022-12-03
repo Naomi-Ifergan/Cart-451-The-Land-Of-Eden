@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The land of Eden</title>
   <!-- Stylesheet -->
@@ -10,19 +10,24 @@
   <script src="script.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   <!-- ResponsiveVoice -->
-<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 <!-- annyang -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=dxLA1Br5"></script>
 
-
-  <style>
+<!-- Project Sources: 
+background image: https://wallpaperaccess.com/futuristic-house
+https://codingartistweb.com/2021/12/autocomplete-suggestions-on-input-field-with-javascript
+https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
+ 
+ <style>
     body {
 
       background: url('images/background.jpg') no-repeat center center fixed;
       background-size: cover;
       height: 100%;
       overflow: hidden;
+      overflow-y: scroll;
 
     }
   </style>
@@ -30,10 +35,27 @@
 
 
 <body>
+ 
+  <h1> <br> The Land Of Eden: <br> The Land Of A Billion Minds <br> <br> </h1>
 
-  <h1> <br> The Land Of Eden: <br> The Land Of A Billion Minds <br> <br> </br>
-
+  <!-- Instruction Button -->
+  <button data-modal-target="#modal">Instructions</button>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="title">Instructions</div>
+      <button data-close-button class="close-button"></button>
     </div>
+    <div class="modal-body">
+      <br> Welcome to Land of Eden! </br> 
+   <br>Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, social class... </br>
+   <br>Use the search bar to begin the creation of a new and perfect world.</br>
+   <br> To do so, begin typing the words "no", "more", "less", or "better".</br>
+    </div>
+  </div>
+  <div id="overlay"></div>
+
+  
+   <!-- Search bar -->
     <form autocomplete="off">
       <div>
         <input type="text" id="input" placeholder="What would make the world a perfect place?" />
@@ -42,7 +64,8 @@
       <div id="entry">
       </div>
      
-     
+   
+       <!-- View All Button -->
 
       <div id="viewall">
 
@@ -58,9 +81,22 @@
 
       </div>
         <ul class="list"></ul>
-      <div id = buttons> </div>
+      <div id = "buttons"> </div>
 
 
+      <!-- Top Answers Button -->
+  <button data-score-target="#score">Top Answers</button>
+  <div class="score" id="score">
+    <div class="score-header">
+      <div class="title">Top Answers</div>
+
+    </div>
+    <div class="score-body">
+      
+  Top Answers will be displayed based on the submitted entries!
+    </div>
+  </div>
+  <div id="scoreOverlay"></div>
     </form>
 
 
@@ -80,6 +116,7 @@
         "no terrorism",
         "no drugs",
         "no police brutality",
+        "no more  gender inequality",
 
         "more green spaces",
         "more handicap access",
@@ -89,6 +126,12 @@
         "more diversity",
         "more hybrid vehicles",
         "more comunity gardens",
+        "more renewable source energy",
+        "more slow fashion",
+        "more freedom",
+        "more peace",
+        "more sustainable living",
+       
 
         "less taxes",
         "less poverty",
@@ -101,28 +144,87 @@
         "better rights",
         "better government",
         "better public transportation",
-
-        "gender equality",
-        "renewable source energy",
-        "vegan living",
-
-        "sustainable living",
-        "slow fashion",
-
-        "higher minimum wage",
-
-        "a safer environment",
-        "all lives matter",
-
-        "peace",
-        "pet friendly environment",
-
-        "freedom",
-        "flying cars"
-
+        "better higher minimum wage " 
+       
+    
       ];
 
+      //Instruction button
+      const openModalButtons = document.querySelectorAll('[data-modal-target]')
+      const closeModalButtons = document.querySelectorAll('[data-close-button]')
+      const overlay = document.getElementById('overlay')
 
+openModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = document.querySelector(button.dataset.modalTarget)
+    openModal(modal)
+  })
+})
+
+overlay.addEventListener('click', () => {
+  const modals = document.querySelectorAll('.modal.active')
+  modals.forEach(modal => {
+    closeModal(modal)
+  })
+})
+
+closeModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal')
+    closeModal(modal)
+  })
+})
+
+function openModal(modal) {
+  if (modal == null) return
+  modal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+  if (modal == null) return
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
+}
+
+
+//Score button
+      const openScoreButtons = document.querySelectorAll('[data-score-target]')
+      const closeScoreButtons = document.querySelectorAll('[data-close-score]')
+      const scoreOverlay = document.getElementById('scoreOverlay')
+
+openScoreButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const score = document.querySelector(button.dataset.scoreTarget)
+    openScore(score)
+  })
+})
+
+scoreOverlay.addEventListener('click', () => {
+  const scores = document.querySelectorAll('.score.active')
+  scores.forEach(score => {
+    closeScore(score)
+  })
+})
+
+closeScoreButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const score = button.closest('.score')
+    closeScore(score)
+  })
+})
+
+function openScore(score) {
+  if (score == null) return
+  score.classList.add('active')
+  scoreOverlay.classList.add('active')
+}
+
+function closeScore(score) {
+  if (score == null) return
+  score.classList.remove('active')
+  scoreOverlay.classList.remove('active')
+}
 
       let sortedAnswers = answers.sort();
       let input = document.getElementById("input");
@@ -131,7 +233,7 @@
       let sound = new Audio("sound/sound.mp3");
 
       $("p").hide();
-      $("#viewallclosable").hide();
+      // $("#viewallclosable").hide();
 
       //voice activation with Annyang
         if (annyang) {
@@ -187,13 +289,15 @@
 
         var posY=Math.floor(Math.random() *800) + 1; // we give it a max of 800 so that it can be seen on the smallest computer screen which is aprox that size.
         var posX=Math.floor(Math.random() *800) + 1;
+        var posL=Math.floor(Math.random() *800) + 1;
+        var posR=Math.floor(Math.random() *800) + 1;
         const box = document.createElement("div");
         box.id = 'entry' + Date.now();
         //box.id = "box";
         box.innerHTML=value;
         box.classList.add('entry');
-
-        box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;'+'left:'+posX+'px; right:'+posY+'px;');
+//alert(posX+'-'+posY);
+        box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;'+'left:'+posL+'px; right:'+posR+'px;');
         document.getElementById('entry').appendChild(box);
         //document.getElementById('entry').innerHTML = document.getElementById('entry').innerHTML + value + "<br>";
         document.getElementById('input').value = '';
@@ -210,12 +314,6 @@
       }
 
 
-//Top Answers button
-  let topAnswersButton = document.createElement('button');
-  topAnswersButton.id = 'topAnswers';
-  topAnswersButton.innerHTML = 'Top Answers';
-  document.body.appendChild(topAnswersButton);
-
   //View All button
     let viewAllButton = document.createElement('button');
     viewAllButton.id = 'viewAll';
@@ -227,7 +325,7 @@
   //display the value in array
   //listItem.innerHTML = word;
   //document.querySelector(".list").appendChild(listItem);
-   let entrylist=document.querySelectorAll(".entry");
+  let entrylist=document.querySelectorAll(".entry");
   for(var i=0; i<entrylist.length;i++)
   {
     entrylist[i].style.visibility="hidden";
@@ -236,6 +334,20 @@
     
     document.getElementById('viewall').innerHTML = document.getElementById('viewall').innerHTML + entrylist[i].innerHTML+'<br>';
     //alert(entrylist[i].innerHTML);
+  }
+
+ }
+
+ function topAnswers(){
+ 
+  let entrylist=document.querySelectorAll(".entry");
+  for(var i=0; i<entrylist.length;i++)
+  {
+    entrylist[i].style.visibility="hidden";
+    $("p").hide();
+    $("#viewallclosable").hide();
+    
+    
   }
 
  }
