@@ -20,6 +20,7 @@ h3{
   font-size: 20px;
   color: black;
 }
+
 p{
   font-size: 15px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
@@ -41,7 +42,7 @@ p{
   transition: 200ms ease-in-out;
   border: 1px solid black;
   border-radius: 10px;
-  z-index: 10;
+  z-index: 7;
   background-color: white;
   width: 500px;
   max-width: 80%;
@@ -96,6 +97,77 @@ p{
 }
 
 
+ .viewall {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+}
+
+.viewall.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.viewall-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.viewall-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.viewall-header .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.viewall-body {
+  padding: 10px 15px;
+}
+
+#viewallOverlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#viewallOverlay.active {
+  opacity: 1;
+  pointer-events: all;
+} 
+
+
+
+
+
+
+
+
+
+
+
 
 .score {
   position: fixed;
@@ -105,7 +177,7 @@ p{
   transition: 200ms ease-in-out;
   border: 1px solid black;
   border-radius: 10px;
-  z-index: 10;
+  z-index: 7;
   background-color: white;
   width: 500px;
   max-width: 80%;
@@ -162,7 +234,73 @@ p{
 }
 
 
-button{
+
+.viewall {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 7;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+overflow-y: scroll;
+ 
+}
+
+.viewall.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.viewall-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.viewall-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  
+}
+
+.viewall-header .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.viewall-body {
+  padding: 10px 15px;
+}
+
+#viewallOverlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#viewallOverlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+button {
   text-align: left;
   padding-bottom: 10px;
   padding: 10px;
@@ -176,11 +314,15 @@ button{
   text-align: center;
   font-size: 12px;
   border-radius: 10px;
+  border-color: black;
+  border-style: solid;
+  z-index: 7;
 }
 
 button:hover{
   background-color:#6DD1DC;
-}
+} 
+
 
 input {   /* this is for the user's input in the search bar */
   height: 35px;
@@ -202,6 +344,7 @@ input {   /* this is for the user's input in the search bar */
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
   position: center;
+  z-index: 7;
 
 
 }
@@ -228,6 +371,7 @@ input[type="text"] { /* this is for the placeholder */
   font-size: 16px;
   background-color: white;
   border-radius:10px;
+  z-index: 7;
 
 
 }
@@ -257,7 +401,7 @@ ul {
 }
 
 
-#viewAll{
+ #viewAll{
   text-align: left;
   padding-bottom: 10px;
   padding: 10px;
@@ -276,7 +420,7 @@ ul {
 
 #viewAll:hover{
   background-color:#6DD1DC;
-}
+} 
 
 .entry{
   background-color: green;
@@ -289,10 +433,10 @@ ul {
   border-color: black;
   border-style: solid;
   text-align: center;
-
+  z-index: -1;
 }
 
-#viewall{
+ #viewall{
   width: 500px;
   font-size: 15px;
   color: black;
@@ -301,7 +445,7 @@ ul {
   padding-left: 10px;
  text-align: left;
  overflow-y: scroll;
-}
+} 
 
 .ShowHide {
   overflow: hidden;

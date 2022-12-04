@@ -27,7 +27,7 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
       background-size: cover;
       height: 100%;
       overflow: hidden;
-      overflow-y: scroll;
+  
 
     }
   </style>
@@ -65,7 +65,7 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
       </div>
      
    
-       <!-- View All Button -->
+       <!-- View All Button 
 
       <div id="viewall">
 
@@ -79,13 +79,27 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
         <p> All submissions: <br> </p>
       </div>
 
-      </div>
-        <ul class="list"></ul>
-      <div id = "buttons"> </div>
+      </div>  -->
 
+
+
+ <!-- View All Button TEST-->
+      <button data-viewall-target="#viewall" style="margin-top: 400px; left: 2px;"> TEST VIEW ALL</button>
+      <div class="viewall" id="viewall">
+        <div class="viewall-header">
+          <div class="title">VIEW ALL- TEST</div>
+          <!-- <button data-close-button class="close-button">&times;</button>  -->
+        </div>
+        <div class="viewall-body">
+         TEST for view all. 
+        </div>
+      </div>
+      <div id="viewallOverlay"></div> 
+
+      
 
       <!-- Top Answers Button -->
-  <button data-score-target="#score">Top Answers</button>
+  <button data-score-target="#score" style="margin-top: 360px; left: 2px;">Top Answers</button>
   <div class="score" id="score">
     <div class="score-header">
       <div class="title">Top Answers</div>
@@ -97,7 +111,10 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
     </div>
   </div>
   <div id="scoreOverlay"></div>
-    </form>
+   
+  <ul class="list"></ul>
+      <div id = "buttons"> </div> 
+</form>
 
 
     <script>
@@ -149,6 +166,13 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
     
       ];
 
+         // Add our commands to annyang
+         annyang.addCommands(commands);
+
+// Start listening. You can call this here, or attach this call to an event, button, etc.
+annyang.start();
+annyang.debug(true); 
+
       //Instruction button
       const openModalButtons = document.querySelectorAll('[data-modal-target]')
       const closeModalButtons = document.querySelectorAll('[data-close-button]')
@@ -188,7 +212,7 @@ function closeModal(modal) {
 }
 
 
-//Score button
+//Top Answers - Score button
       const openScoreButtons = document.querySelectorAll('[data-score-target]')
       const closeScoreButtons = document.querySelectorAll('[data-close-score]')
       const scoreOverlay = document.getElementById('scoreOverlay')
@@ -226,33 +250,67 @@ function closeScore(score) {
   scoreOverlay.classList.remove('active')
 }
 
+
+//TEST for View All button
+const openViewallButtons = document.querySelectorAll('[data-viewall-target]')
+const closeViewallButtons = document.querySelectorAll('[data-viewall-button]')
+const viewallOverlay = document.getElementById('viewallOverlay')
+
+openViewallButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const viewall = document.querySelector(button.dataset.viewallTarget)
+    openViewall(viewall)
+  })
+})
+
+viewallOverlay.addEventListener('click', () => {
+  const viewall = document.querySelectorAll('.viewall.active')
+  viewall.forEach(viewall => {
+    closeViewall(viewall)
+  })
+})
+
+closeViewallButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const viewall = button.closest('.viewall')
+    closeViewall(viewall)
+  })
+})
+
+function openViewall(viewall) {
+  if (viewall == null) return
+  viewall.classList.add('active')
+  viewallOverlay.classList.add('active')
+}
+
+function closeViewall(viewAll) {
+  if (viewall == null) return
+  viewall.classList.remove('active')
+  viewallOverlay.classList.remove('active')
+}
+
       let sortedAnswers = answers.sort();
       let input = document.getElementById("input");
 
       //Sound
       let sound = new Audio("sound/sound.mp3");
 
-      $("p").hide();
-      // $("#viewallclosable").hide();
+      //$("p").hide();
+      //$("#viewallclosable").hide();
 
       //voice activation with Annyang
         if (annyang) {
           var commands = {
-            answers: function() { //the player is giving the command to display their answer
+            answers: displayAnswers(value) { //the player is giving the command to display their answer
               listItem.innerHTML = word;
               document.querySelector(".list").appendChild(listItem);
               sound.play();
               sound.volume = 0.1;
              //when the command is said, answer is displayed on screen.
-              responsiveVoice.speak("Your answer has been submitted. Anything else?", "UK English Male")
+              responsiveVoice.speak("Your answer has been submitted.", "UK English Male")
             }
           }
-          // Add our commands to annyang
-          annyang.addCommands(commands);
-
-          // Start listening. You can call this here, or attach this call to an event, button, etc.
-          annyang.start();
-          annyang.debug(true);
+      
         }
 
 
@@ -328,7 +386,7 @@ function closeScore(score) {
   let entrylist=document.querySelectorAll(".entry");
   for(var i=0; i<entrylist.length;i++)
   {
-    entrylist[i].style.visibility="hidden";
+    // entrylist[i].style.visibility="hidden";
     $("p").show();
     $("#viewallclosable").show();
     
@@ -338,23 +396,23 @@ function closeScore(score) {
 
  }
 
- function topAnswers(){
+//  function topAnswers(){
  
-  let entrylist=document.querySelectorAll(".entry");
-  for(var i=0; i<entrylist.length;i++)
-  {
-    entrylist[i].style.visibility="hidden";
-    $("p").hide();
-    $("#viewallclosable").hide();
+//   let entrylist=document.querySelectorAll(".entry");
+//   for(var i=0; i<entrylist.length;i++)
+//   {
+//     entrylist[i].style.visibility="hidden";
+//     $("p").hide();
+//     $("#viewallclosable").hide();
     
     
-  }
+//   }
 
- }
+//  }
 
- function Hide(HideID) { //instead of hiding it, it makes disappear therefore we can never access the view all section after closing it once.
-  HideID.style.display = "none"; 
-}
+//  function Hide(HideID) { //instead of hiding it, it makes disappear therefore we can never access the view all section after closing it once.
+//   HideID.style.display = "none"; 
+// }
 
     </script>
 </body>
