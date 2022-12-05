@@ -30,6 +30,7 @@ p{
 }
 
 
+
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -157,6 +158,7 @@ p{
   opacity: 1;
   pointer-events: all;
 } 
+
 
 
 
@@ -372,9 +374,11 @@ input[type="text"] { /* this is for the placeholder */
   background-color: white;
   border-radius:10px;
   z-index: 7;
-
+  border-color: black;
+  border-style: solid;
 
 }
+
 
 ul {
   list-style: none;
@@ -401,7 +405,7 @@ ul {
 }
 
 
- #viewAll{
+ /* #viewAll{
   text-align: left;
   padding-bottom: 10px;
   padding: 10px;
@@ -420,7 +424,7 @@ ul {
 
 #viewAll:hover{
   background-color:#6DD1DC;
-} 
+}  */
 
 .entry{
   background-color: green;
@@ -468,4 +472,29 @@ ul {
    text-decoration: none;
 }
 
+.mic-button{
+  width: 40px;
+  height: 40px;
+  background: white;
+  color:black;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: 200ms ease-in-out;
+  border-color: black;
+  border-style: solid;
+}
+
+.mic-button:hover{
+  background-color:#6DD1DC;
+}
+
+
+.mic-button{
+
+ right: 110px;
+}
 

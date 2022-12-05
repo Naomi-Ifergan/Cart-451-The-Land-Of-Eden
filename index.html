@@ -18,7 +18,8 @@
 <!-- Project Sources: 
 background image: https://wallpaperaccess.com/futuristic-house
 https://codingartistweb.com/2021/12/autocomplete-suggestions-on-input-field-with-javascript
-https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
+https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s 
+https://www.youtube.com/watch?v=COs0-6G62vY -->
  
  <style>
     body {
@@ -28,28 +29,32 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
       height: 100%;
       overflow: hidden;
   
-
     }
+
+  
   </style>
 </head>
 
 
 <body>
  
+
   <h1> <br> The Land Of Eden: <br> The Land Of A Billion Minds <br> <br> </h1>
 
+ 
   <!-- Instruction Button -->
-  <button data-modal-target="#modal">Instructions</button>
+  <button data-modal-target="#modal" onclick="instructions()" style="margin-top: 360px; left: 2px;">Instructions</button>
   <div class="modal" id="modal">
     <div class="modal-header">
       <div class="title">Instructions</div>
       <button data-close-button class="close-button"></button>
     </div>
     <div class="modal-body">
-      <br> Welcome to Land of Eden! </br> 
-   <br>Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, social class... </br>
+      <br> Welcome to The Land of Eden! </br> 
+   <br>Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, and social class. </br>
    <br>Use the search bar to begin the creation of a new and perfect world.</br>
-   <br> To do so, begin typing the words "no", "more", "less", or "better".</br>
+   <br> To do so, begin typing the words "no", "more", "less", or "better". </br>
+   <br> To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions. <br> <br> </br>
     </div>
   </div>
   <div id="overlay"></div>
@@ -57,15 +62,16 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
   
    <!-- Search bar -->
     <form autocomplete="off">
-      <div>
-        <input type="text" id="input" placeholder="What would make the world a perfect place?" />
-
-      </div>
+      
+      <button class="mic-button" type = "button" onclick= "start();">
+        <ion-icon name="mic-sharp" size="large"></ion-icon>
+        </button>
+        <input type="text" id="input" placeholder="What would make the world a perfect place?" onclick="start()">
+   
       <div id="entry">
       </div>
-     
-   
-       <!-- View All Button 
+ 
+       <!-- View All Button ****OLD BUTTON****
 
       <div id="viewall">
 
@@ -81,17 +87,15 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
 
       </div>  -->
 
-
-
- <!-- View All Button TEST-->
-      <button data-viewall-target="#viewall" style="margin-top: 400px; left: 2px;"> TEST VIEW ALL</button>
+ <!-- View All Button -->
+      <button data-viewall-target="#viewall" style="margin-top: 400px; left: 2px;" onclick ="viewAll()"> View All</button>
       <div class="viewall" id="viewall">
         <div class="viewall-header">
-          <div class="title">VIEW ALL- TEST</div>
+          <div class="title">View All Submisisons</div>
           <!-- <button data-close-button class="close-button">&times;</button>  -->
         </div>
         <div class="viewall-body">
-         TEST for view all. 
+      
         </div>
       </div>
       <div id="viewallOverlay"></div> 
@@ -166,12 +170,6 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
     
       ];
 
-         // Add our commands to annyang
-         annyang.addCommands(commands);
-
-// Start listening. You can call this here, or attach this call to an event, button, etc.
-annyang.start();
-annyang.debug(true); 
 
       //Instruction button
       const openModalButtons = document.querySelectorAll('[data-modal-target]')
@@ -292,6 +290,19 @@ function closeViewall(viewAll) {
       let sortedAnswers = answers.sort();
       let input = document.getElementById("input");
 
+
+function start() {
+
+  responsiveVoice.speak("What would make the world a perfect place?" , "UK English Male")
+
+}
+
+function instructions() {
+
+responsiveVoice.speak("Welcome to The Land of Eden! Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, and social class. Use the search bar to begin the creation of a new and perfect world. To do so, begin typing the words no, more, less, or better. To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions.", "UK English Male")
+
+}
+
       //Sound
       let sound = new Audio("sound/sound.mp3");
 
@@ -301,7 +312,7 @@ function closeViewall(viewAll) {
       //voice activation with Annyang
         if (annyang) {
           var commands = {
-            answers: displayAnswers(value) { //the player is giving the command to display their answer
+            'answer *  listItem': function displayAnswers(value) { //the player is giving the command to display their answer
               listItem.innerHTML = word;
               document.querySelector(".list").appendChild(listItem);
               sound.play();
@@ -311,8 +322,15 @@ function closeViewall(viewAll) {
             }
           }
       
-        }
+        
 
+         // Add our commands to annyang
+         annyang.addCommands(commands);
+
+// Start listening. You can call this here, or attach this call to an event, button, etc.
+annyang.start();
+annyang.debug(true); 
+}
 
       //Execute function on keyup
       input.addEventListener("keyup", (e) => {
@@ -354,7 +372,7 @@ function closeViewall(viewAll) {
         //box.id = "box";
         box.innerHTML=value;
         box.classList.add('entry');
-//alert(posX+'-'+posY);
+        //alert(posX+'-'+posY);
         box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;'+'left:'+posL+'px; right:'+posR+'px;');
         document.getElementById('entry').appendChild(box);
         //document.getElementById('entry').innerHTML = document.getElementById('entry').innerHTML + value + "<br>";
@@ -372,12 +390,12 @@ function closeViewall(viewAll) {
       }
 
 
-  //View All button
-    let viewAllButton = document.createElement('button');
-    viewAllButton.id = 'viewAll';
-    viewAllButton.innerHTML = 'View All';
-    viewAllButton.setAttribute("onclick", "viewAll()");
-    document.body.appendChild(viewAllButton);
+  //View All button ****OLD BUTTON****
+    // let viewAllButton = document.createElement('button');
+    // viewAllButton.id = 'viewAll';
+    // viewAllButton.innerHTML = 'View All';
+    // viewAllButton.setAttribute("onclick", "viewAll()");
+    // document.body.appendChild(viewAllButton);
 
  function viewAll(){
   //display the value in array
@@ -388,7 +406,7 @@ function closeViewall(viewAll) {
   {
     // entrylist[i].style.visibility="hidden";
     $("p").show();
-    $("#viewallclosable").show();
+    //$("#viewallclosable").show();
     
     document.getElementById('viewall').innerHTML = document.getElementById('viewall').innerHTML + entrylist[i].innerHTML+'<br>';
     //alert(entrylist[i].innerHTML);
@@ -415,6 +433,12 @@ function closeViewall(viewAll) {
 // }
 
     </script>
+
+<!-- <a href="#" onclick= "start();"> -->
+
+ 
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
