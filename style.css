@@ -30,7 +30,6 @@ p{
 }
 
 
-
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -158,7 +157,6 @@ p{
   opacity: 1;
   pointer-events: all;
 } 
-
 
 
 
@@ -377,8 +375,8 @@ input[type="text"] { /* this is for the placeholder */
   border-color: black;
   border-style: solid;
 
-}
 
+}
 
 ul {
   list-style: none;
@@ -404,8 +402,8 @@ ul {
   background-color: #dddddd;
 }
 
-
- /* #viewAll{
+/* 
+ #viewAll{
   text-align: left;
   padding-bottom: 10px;
   padding: 10px;
@@ -486,15 +484,10 @@ ul {
   transition: 200ms ease-in-out;
   border-color: black;
   border-style: solid;
+  margin-top: 1px;
+  margin-left: 500px;
 }
 
 .mic-button:hover{
   background-color:#6DD1DC;
 }
-
-
-.mic-button{
-
- right: 110px;
-}
-

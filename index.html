@@ -6,8 +6,7 @@
   <title>The land of Eden</title>
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
-  <!--Scripts-->
-  <script src="script.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   <!-- ResponsiveVoice -->
 <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
@@ -18,8 +17,7 @@
 <!-- Project Sources: 
 background image: https://wallpaperaccess.com/futuristic-house
 https://codingartistweb.com/2021/12/autocomplete-suggestions-on-input-field-with-javascript
-https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s 
-https://www.youtube.com/watch?v=COs0-6G62vY -->
+https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
  
  <style>
     body {
@@ -29,52 +27,75 @@ https://www.youtube.com/watch?v=COs0-6G62vY -->
       height: 100%;
       overflow: hidden;
   
-    }
 
-  
+    }
   </style>
 </head>
 
 
 <body>
  
-
   <h1> <br> The Land Of Eden: <br> The Land Of A Billion Minds <br> <br> </h1>
 
- 
   <!-- Instruction Button -->
-  <button data-modal-target="#modal" onclick="instructions()" style="margin-top: 360px; left: 2px;">Instructions</button>
+  <div id="overlay"></div>
+  <button data-modal-target="#modal" onclick="instructions()" style="margin-top: 370px; left: 2px;"> Instructions </button>
   <div class="modal" id="modal">
     <div class="modal-header">
       <div class="title">Instructions</div>
       <button data-close-button class="close-button"></button>
     </div>
     <div class="modal-body">
-      <br> Welcome to The Land of Eden! </br> 
-   <br>Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, and social class. </br>
-   <br>Use the search bar to begin the creation of a new and perfect world.</br>
-   <br> To do so, begin typing the words "no", "more", "less", or "better". </br>
-   <br> To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions. <br> <br> </br>
+      <br> Welcome to Land of Eden! <br> 
+   <br>Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, social class... <br>
+   <br>Use the search bar to begin the creation of a new and perfect world.<br>
+   <br> To do so, begin typing the words "no", "more", "less", or "better".<br>
     </div>
   </div>
-  <div id="overlay"></div>
 
+   <!-- View All Button -->
+ <div id="viewallOverlay"></div> 
+ <button data-viewall-target="#viewall" style="margin-top: 450px; left: 2px;" onclick ="viewAll();"> View All </button>
+ <div class="viewall" id="viewall">
+   <div class="viewall-header">
+     <div class="title"> View All Submisisons</div>
+<!--      <button data-close-button class="close-button">&times;</button> -->
+   </div>
+   <div class="viewall-body" id="viewall-body">
+ 
+   </div>
+ </div> 
+
+
+     <!-- Top Answers Button -->
+     <div id="scoreOverlay"></div>
+     <button data-score-target="#score" style="margin-top: 410px; left: 2px;">Top Answers</button>
+     <div class="score" id="score">
+       <div class="score-header">
+         <div class="title">Top Answers</div>
+   
+       </div>
+       <div class="score-body">
+         
+     Top Answers will be displayed based on the submitted entries!
+       </div>
+     </div>
   
    <!-- Search bar -->
     <form autocomplete="off">
-      
       <button class="mic-button" type = "button" onclick= "start();">
-        <ion-icon name="mic-sharp" size="large"></ion-icon>
+        <ion-icon name="mic-sharp" size="large" style="justify-content:center"></ion-icon>
         </button>
-        <input type="text" id="input" placeholder="What would make the world a perfect place?" onclick="start()">
-   
+      <div>
+        <input type="text" id="input" placeholder="What would make the world a perfect place?">
+     
+      </div>
       <div id="entry">
       </div>
- 
-       <!-- View All Button ****OLD BUTTON****
-
+     
+   
+       <!-- View All Button 
       <div id="viewall">
-
         <div class="ShowHide" id="viewallclosable">
           <div id="right">
             <a href="#" onclick="Hide(viewall);">X</a>
@@ -84,37 +105,9 @@ https://www.youtube.com/watch?v=COs0-6G62vY -->
         </div>
         <p> All submissions: <br> </p>
       </div>
-
       </div>  -->
 
- <!-- View All Button -->
-      <button data-viewall-target="#viewall" style="margin-top: 400px; left: 2px;" onclick ="viewAll()"> View All</button>
-      <div class="viewall" id="viewall">
-        <div class="viewall-header">
-          <div class="title">View All Submisisons</div>
-          <!-- <button data-close-button class="close-button">&times;</button>  -->
-        </div>
-        <div class="viewall-body">
-      
-        </div>
-      </div>
-      <div id="viewallOverlay"></div> 
 
-      
-
-      <!-- Top Answers Button -->
-  <button data-score-target="#score" style="margin-top: 360px; left: 2px;">Top Answers</button>
-  <div class="score" id="score">
-    <div class="score-header">
-      <div class="title">Top Answers</div>
-
-    </div>
-    <div class="score-body">
-      
-  Top Answers will be displayed based on the submitted entries!
-    </div>
-  </div>
-  <div id="scoreOverlay"></div>
    
   <ul class="list"></ul>
       <div id = "buttons"> </div> 
@@ -122,22 +115,22 @@ https://www.youtube.com/watch?v=COs0-6G62vY -->
 
 
     <script>
-      let answers = [ //I will be adding more data as I go. (currently asking people for answers)
-        "no racism",
-        "no antisemitism",
-        "no violence",
-        "no animal abuse",
-        "no discrimination",
-        "no war",
-        "no hate crime",
-        "no more covid",
-        "no more homeless people",
-        "no guns",
-        "no diseases",
-        "no terrorism",
-        "no drugs",
-        "no police brutality",
-        "no more  gender inequality",
+      let answers = [ 
+        "NO racism",
+        "NO antisemitism",
+        "NO violence",
+        "NO animal abuse",
+        "NO discrimination",
+        "NO war",
+        "NO hate crime",
+        "NO more covid",
+        "NO more homeless people",
+        "NO guns",
+        "NO diseases",
+        "NO terrorism",
+        "NO drugs",
+        "NO police brutality",
+        "NO more  gender inequality",
 
         "more green spaces",
         "more handicap access",
@@ -171,6 +164,25 @@ https://www.youtube.com/watch?v=COs0-6G62vY -->
       ];
 
 
+//          // Add our commands to annyang
+//          annyang.addCommands(commands);
+
+// // Start listening. You can call this here, or attach this call to an event, button, etc.
+// annyang.start();
+// annyang.debug(true); 
+
+
+function start() {
+
+responsiveVoice.speak("What would make the world a perfect place?" , "UK English Male")
+
+}
+
+function instructions() {
+
+responsiveVoice.speak("Welcome to The Land of Eden! Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, and social class. Use the search bar to begin the creation of a new and perfect world. To do so, begin typing the words no, more, less, or better. To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions.", "UK English Male")
+
+}
       //Instruction button
       const openModalButtons = document.querySelectorAll('[data-modal-target]')
       const closeModalButtons = document.querySelectorAll('[data-close-button]')
@@ -209,47 +221,7 @@ function closeModal(modal) {
   overlay.classList.remove('active')
 }
 
-
-//Top Answers - Score button
-      const openScoreButtons = document.querySelectorAll('[data-score-target]')
-      const closeScoreButtons = document.querySelectorAll('[data-close-score]')
-      const scoreOverlay = document.getElementById('scoreOverlay')
-
-openScoreButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const score = document.querySelector(button.dataset.scoreTarget)
-    openScore(score)
-  })
-})
-
-scoreOverlay.addEventListener('click', () => {
-  const scores = document.querySelectorAll('.score.active')
-  scores.forEach(score => {
-    closeScore(score)
-  })
-})
-
-closeScoreButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const score = button.closest('.score')
-    closeScore(score)
-  })
-})
-
-function openScore(score) {
-  if (score == null) return
-  score.classList.add('active')
-  scoreOverlay.classList.add('active')
-}
-
-function closeScore(score) {
-  if (score == null) return
-  score.classList.remove('active')
-  scoreOverlay.classList.remove('active')
-}
-
-
-//TEST for View All button
+//View All button
 const openViewallButtons = document.querySelectorAll('[data-viewall-target]')
 const closeViewallButtons = document.querySelectorAll('[data-viewall-button]')
 const viewallOverlay = document.getElementById('viewallOverlay')
@@ -264,7 +236,8 @@ openViewallButtons.forEach(button => {
 viewallOverlay.addEventListener('click', () => {
   const viewall = document.querySelectorAll('.viewall.active')
   viewall.forEach(viewall => {
-    closeViewall(viewall)
+    closeViewall(viewall);
+    
   })
 })
 
@@ -281,27 +254,57 @@ function openViewall(viewall) {
   viewallOverlay.classList.add('active')
 }
 
-function closeViewall(viewAll) {
+function closeViewall(viewall) {
   if (viewall == null) return
   viewall.classList.remove('active')
   viewallOverlay.classList.remove('active')
 }
 
+//Top Answers - Score button
+const openScoreButtons = document.querySelectorAll('[data-score-target]')
+      const closeScoreButtons = document.querySelectorAll('[data-close-score]')
+      const scoreOverlay = document.getElementById('scoreOverlay')
+
+openScoreButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const score = document.querySelector(button.dataset.scoreTarget)
+    openScore(score);
+  
+  })
+})
+
+scoreOverlay.addEventListener('click', () => {
+  const scores = document.querySelectorAll('.score.active')
+  scores.forEach(score => {
+    closeScore(score)
+
+  })
+})
+
+closeScoreButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const score = button.closest('.score')
+    closeScore(score)
+ 
+  })
+})
+
+function openScore(score) {
+  if (score == null) return
+  score.classList.add('active')
+  scoreOverlay.classList.add('active')
+ 
+}
+
+function closeScore(score) {
+  if (score == null) return
+  score.classList.remove('active')
+  scoreOverlay.classList.remove('active')
+ 
+}
+
       let sortedAnswers = answers.sort();
       let input = document.getElementById("input");
-
-
-function start() {
-
-  responsiveVoice.speak("What would make the world a perfect place?" , "UK English Male")
-
-}
-
-function instructions() {
-
-responsiveVoice.speak("Welcome to The Land of Eden! Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, and social class. Use the search bar to begin the creation of a new and perfect world. To do so, begin typing the words no, more, less, or better. To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions.", "UK English Male")
-
-}
 
       //Sound
       let sound = new Audio("sound/sound.mp3");
@@ -309,28 +312,21 @@ responsiveVoice.speak("Welcome to The Land of Eden! Together, we will create a u
       //$("p").hide();
       //$("#viewallclosable").hide();
 
-      //voice activation with Annyang
-        if (annyang) {
-          var commands = {
-            'answer *  listItem': function displayAnswers(value) { //the player is giving the command to display their answer
-              listItem.innerHTML = word;
-              document.querySelector(".list").appendChild(listItem);
-              sound.play();
-              sound.volume = 0.1;
-             //when the command is said, answer is displayed on screen.
-              responsiveVoice.speak("Your answer has been submitted.", "UK English Male")
-            }
-          }
+      // //voice activation with Annyang
+      //   if (annyang) {
+      //     var commands = {
+      //       answers: displayAnswers(value) { //the player is giving the command to display their answer
+      //         listItem.innerHTML = word;
+      //         document.querySelector(".list").appendChild(listItem);
+      //         sound.play();
+      //         sound.volume = 0.1;
+      //        //when the command is said, answer is displayed on screen.
+      //         responsiveVoice.speak("Your answer has been submitted.", "UK English Male")
+      //       }
+      //     }
       
-        
+      //   }
 
-         // Add our commands to annyang
-         annyang.addCommands(commands);
-
-// Start listening. You can call this here, or attach this call to an event, button, etc.
-annyang.start();
-annyang.debug(true); 
-}
 
       //Execute function on keyup
       input.addEventListener("keyup", (e) => {
@@ -390,25 +386,26 @@ annyang.debug(true);
       }
 
 
-  //View All button ****OLD BUTTON****
-    // let viewAllButton = document.createElement('button');
-    // viewAllButton.id = 'viewAll';
-    // viewAllButton.innerHTML = 'View All';
-    // viewAllButton.setAttribute("onclick", "viewAll()");
-    // document.body.appendChild(viewAllButton);
+  // //View All button
+  //   let viewAllButton = document.createElement('button');
+  //   viewAllButton.id = 'viewAll';
+  //   viewAllButton.innerHTML = 'View All';
+  //   viewAllButton.setAttribute("onclick", "viewAll()");
+  //   document.body.appendChild(viewAllButton);
 
  function viewAll(){
   //display the value in array
   //listItem.innerHTML = word;
   //document.querySelector(".list").appendChild(listItem);
   let entrylist=document.querySelectorAll(".entry");
+  document.getElementById('viewall-body').innerHTML='';
   for(var i=0; i<entrylist.length;i++)
   {
     // entrylist[i].style.visibility="hidden";
     $("p").show();
-    //$("#viewallclosable").show();
+    $("#viewallclosable").show();
     
-    document.getElementById('viewall').innerHTML = document.getElementById('viewall').innerHTML + entrylist[i].innerHTML+'<br>';
+    document.getElementById('viewall-body').innerHTML = document.getElementById('viewall-body').innerHTML + entrylist[i].innerHTML+'<br>';
     //alert(entrylist[i].innerHTML);
   }
 
@@ -434,9 +431,6 @@ annyang.debug(true);
 
     </script>
 
-<!-- <a href="#" onclick= "start();"> -->
-
- 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
