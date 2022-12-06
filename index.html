@@ -4,15 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The land of Eden</title>
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 
-  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
   <!-- ResponsiveVoice -->
 <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+
 <!-- annyang -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=dxLA1Br5"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script> 
 
 <!-- Project Sources: 
 background image: https://wallpaperaccess.com/futuristic-house
@@ -20,6 +25,7 @@ https://codingartistweb.com/2021/12/autocomplete-suggestions-on-input-field-with
 https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
  
  <style>
+     
     body {
 
       background: url('images/background.jpg') no-repeat center center fixed;
@@ -29,6 +35,8 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
   
 
     }
+
+
   </style>
 </head>
 
@@ -54,13 +62,14 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
    <br>  </div>
   </div>
 
+
+
    <!-- View All Button -->
  <div id="viewallOverlay"></div> 
  <button data-viewall-target="#viewall" style="margin-top: 450px; left: 2px;" onclick ="viewAll();"> View All </button>
  <div class="viewall" id="viewall">
    <div class="viewall-header">
      <div class="title"> View All Submisisons</div>
-<!--      <button data-close-button class="close-button">&times;</button> -->
    </div>
    <div class="viewall-body" id="viewall-body">
  
@@ -93,21 +102,6 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
       </div>
       <div id="entry">
       </div>
-     
-   
-       <!-- View All Button 
-      <div id="viewall">
-        <div class="ShowHide" id="viewallclosable">
-          <div id="right">
-            <a href="#" onclick="Hide(viewall);">X</a>
-          </div>
-          <div id="left">
-           
-        </div>
-        <p> All submissions: <br> </p>
-      </div>
-      </div>  -->
-
 
    
   <ul class="list"></ul>
@@ -117,23 +111,21 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
 
     <script>
       let answers = [ 
-        "NO racism",
-        "NO antisemitism",
-        "NO violence",
-        "NO animal abuse",
-        "NO discrimination",
-        "NO war",
-        "NO hate crime",
-        "NO more covid",
-        "NO more homeless people",
-        "NO guns",
-        "NO diseases",
-        "NO terrorism",
-        "NO drugs",
-        "NO police brutality",
-        "NO more gender inequality",
-        "NO rapists",
 
+        "no racism",
+        "no antisemitism",
+        "no violence",
+        "no animal abuse",
+        "no discrimination",
+        "no war",
+        "no more covid",
+        "no more homeless people",
+        "no guns",
+        "no diseases",
+        "no terrorism",
+        "no more gender inequality",
+        "no rapists", 
+    
         "more green spaces",
         "more handicap access",
         "more doctors",
@@ -143,13 +135,8 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
         "more hybrid vehicles",
         "more comunity gardens",
         "more renewable source energy",
-        "more slow fashion brands",
         "more freedom",
-        "more peace",
         "more sustainable living",
-        "more love",
-        "more acceptance",
-        "more kindness",
         "more remote jobs",
 
         "less taxes",
@@ -321,8 +308,6 @@ function closeScore(score) {
       //Sound
       let sound = new Audio("sound/sound.mp3");
 
-      //$("p").hide();
-      //$("#viewallclosable").hide();
 
       // //voice activation with Annyang
       //   if (annyang) {
@@ -370,23 +355,34 @@ function closeScore(score) {
 
       function displayAnswers(value) {
         input.value = value;
-
+        let entrycolor='';
         var posY=Math.floor(Math.random() *800) + 1; // we give it a max height of 800 so that it can be seen on the smallest computer screen which is aprox that size.
-        var posX=Math.floor(Math.random() *900) + 1; // we give it a max width of 900 so that it can be seen on the smallest screen size.
-        var posL=Math.floor(Math.random() *900) + 1;
-        var posR=Math.floor(Math.random() *900) + 1;
+        var posX=Math.floor(Math.random() *800) + 1; 
+        var posL=Math.floor(Math.random() *800) + 1;
+        var posR=Math.floor(Math.random() *800) + 1;
         const box = document.createElement("div");
         box.id = 'entry' + Date.now();
         //box.id = "box";
         box.innerHTML=value;
+        
+        switch(value.slice(0,2))
+        {
+          case 'no': entrycolor='#F8C4B8';break;
+          case 'mo': entrycolor='#CAF8B8';break;
+          case 'be': entrycolor='#F7F8B8';break;
+          case 'le': entrycolor='#B8E5F8';break;
+        }
+      
         box.classList.add('entry');
-        //alert(posX+'-'+posY);
-        box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;'+'left:'+posL+'px; right:'+posR+'px;');
+ 
+        box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;'+'left:'+posL+'px; right:'+posR+'px; background-color:'+entrycolor+';');
+        
         document.getElementById('entry').appendChild(box);
         //document.getElementById('entry').innerHTML = document.getElementById('entry').innerHTML + value + "<br>";
         document.getElementById('input').value = '';
-
+     
         removeElements();
+    
       }
 
       function removeElements() {
@@ -398,27 +394,15 @@ function closeScore(score) {
       }
 
 
-  // //View All button
-  //   let viewAllButton = document.createElement('button');
-  //   viewAllButton.id = 'viewAll';
-  //   viewAllButton.innerHTML = 'View All';
-  //   viewAllButton.setAttribute("onclick", "viewAll()");
-  //   document.body.appendChild(viewAllButton);
-
  function viewAll(){
-  //display the value in array
-  //listItem.innerHTML = word;
-  //document.querySelector(".list").appendChild(listItem);
+
   let entrylist=document.querySelectorAll(".entry");
   document.getElementById('viewall-body').innerHTML='';
   for(var i=0; i<entrylist.length;i++)
   {
-    // entrylist[i].style.visibility="hidden";
-    $("p").show();
-    $("#viewallclosable").show();
-    
+     
     document.getElementById('viewall-body').innerHTML = document.getElementById('viewall-body').innerHTML + entrylist[i].innerHTML+'<br>';
-    //alert(entrylist[i].innerHTML);
+  
   }
 
  }

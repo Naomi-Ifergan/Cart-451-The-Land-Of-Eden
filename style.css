@@ -21,14 +21,6 @@ h3{
   color: black;
 }
 
-p{
-  font-size: 15px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
-  text-align: center;
-  padding-top: 10px;
-  text-decoration: underline;
-}
-
 
 *, *::after, *::before {
   box-sizing: border-box;
@@ -158,17 +150,6 @@ p{
   pointer-events: all;
 } 
 
-
-
-
-
-
-
-
-
-
-
-
 .score {
   position: fixed;
   top: 50%;
@@ -181,7 +162,6 @@ p{
   background-color: white;
   width: 500px;
   max-width: 80%;
-
  
 }
 
@@ -374,8 +354,6 @@ input[type="text"] { /* this is for the placeholder */
   z-index: 7;
   border-color: black;
   border-style: solid;
-
-
 }
 
 ul {
@@ -388,14 +366,12 @@ ul {
   width: 100%;
   background-color: #ffffff;
   border-radius: 0 0 5px 5px;
- 
-
 
 }
 
 .list-items {
   padding: 10px 5px;
-  font-size: 15px;
+  font-size: 13px;
   color: black;
   
 
@@ -405,30 +381,9 @@ ul {
   background-color: #dddddd;
 }
 
-/* 
- #viewAll{
-  text-align: left;
-  padding-bottom: 10px;
-  padding: 10px;
-  position: absolute;
-  width: 50%;
-  margin-top: 310px;
-  margin-left: 70px;
-  background-color: white;
-  width: 100px;
-  height: 40px;
-  text-align: center;
-  font-size: 12px;
-  border-radius: 10px;
-
-}
-
-#viewAll:hover{
-  background-color:#6DD1DC;
-}  */
 
 .entry{
-  background-color: green;
+  /* background-color: green; */
   border-radius: 10px;
   width: 130px;
   height: 70px;
@@ -443,14 +398,14 @@ ul {
 
  #viewall{
   width: 500px;
-  height: 500px;
+  height: 300px;
   font-size: 15px;
   color: black;
   background-color: white;
   border-radius: 10px;
   padding-left: 10px;
- text-align: left;
- overflow-y: scroll;
+  text-align: left;
+
 } 
 
 .ShowHide {
@@ -495,3 +450,5 @@ ul {
 .mic-button:hover{
   background-color:#6DD1DC;
 }
+
+
