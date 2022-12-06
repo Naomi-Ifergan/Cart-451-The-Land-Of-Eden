@@ -247,7 +247,7 @@ p{
   background-color: white;
   width: 500px;
   max-width: 80%;
-overflow-y: scroll;
+  overflow-y: scroll;
  
 }
 
@@ -380,6 +380,7 @@ input[type="text"] { /* this is for the placeholder */
 
 ul {
   list-style: none;
+
 }
 
 
@@ -387,6 +388,7 @@ ul {
   width: 100%;
   background-color: #ffffff;
   border-radius: 0 0 5px 5px;
+ 
 
 
 }
@@ -395,6 +397,7 @@ ul {
   padding: 10px 5px;
   font-size: 15px;
   color: black;
+  
 
 }
 

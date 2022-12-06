@@ -371,10 +371,10 @@ function closeScore(score) {
       function displayAnswers(value) {
         input.value = value;
 
-        var posY=Math.floor(Math.random() *800) + 1; // we give it a max of 800 so that it can be seen on the smallest computer screen which is aprox that size.
-        var posX=Math.floor(Math.random() *800) + 1;
-        var posL=Math.floor(Math.random() *800) + 1;
-        var posR=Math.floor(Math.random() *800) + 1;
+        var posY=Math.floor(Math.random() *800) + 1; // we give it a max height of 800 so that it can be seen on the smallest computer screen which is aprox that size.
+        var posX=Math.floor(Math.random() *900) + 1; // we give it a max width of 900 so that it can be seen on the smallest screen size.
+        var posL=Math.floor(Math.random() *900) + 1;
+        var posR=Math.floor(Math.random() *900) + 1;
         const box = document.createElement("div");
         box.id = 'entry' + Date.now();
         //box.id = "box";
