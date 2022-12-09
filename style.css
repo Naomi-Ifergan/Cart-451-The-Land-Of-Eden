@@ -152,7 +152,7 @@ h3{
   pointer-events: all;
 } 
 
-.score {
+.clear {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -167,11 +167,11 @@ h3{
  
 }
 
-.score.active {
+.clear.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.score-header {
+.clear-header {
   padding: 10px 15px;
   display: flex;
   justify-content: space-between;
@@ -179,13 +179,13 @@ h3{
   border-bottom: 1px solid black;
 }
 
-.score-header .title {
+.clear-header .title {
   font-size: 1.25rem;
   font-weight: bold;
   
 }
 
-.score-header .close-button {
+.clear-header .close-button {
   cursor: pointer;
   border: none;
   outline: none;
@@ -194,7 +194,7 @@ h3{
   font-weight: bold;
 }
 
-.score-body {
+.clear-body {
   padding: 10px 15px;
 }
 
@@ -294,7 +294,7 @@ button {
   width: 100px;
   height: 40px;
   text-align: center;
-  font-size: 12px;
+  font-size: 11.5px;
   border-radius: 10px;
   border-color: black;
   border-style: solid;

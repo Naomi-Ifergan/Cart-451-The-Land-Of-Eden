@@ -37,7 +37,7 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
 </head>
 
 
-<body>
+<body onload="viewAll();">
  
   <h1> <br> The Land Of Eden: <br> The Land Of A Billion Minds <br> <br> </h1>
 
@@ -51,7 +51,7 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
     </div>
     <div class="modal-body">
       <br> Welcome to Land of Eden! <br> <br>
-   <br>Together, we will create a utopia that caters to everyone's needs, regardless of race, gender, age, social class... <br>
+   <br>Together, we will create a utopia that caters to everyone's needs, regardless of race, gender, age, and social class... <br>
    <br>Use the search bar to begin the creation of a new and perfect world.<br>
    <br> To do so, begin typing the words "no", "more", "less", or "better". <br>
    <br>To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions.<br>
@@ -73,19 +73,20 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
  </div> 
 
 
-     <!-- Top Answers Button -->
-     <div id="scoreOverlay"></div>
-     <button data-score-target="#score" style="margin-top: 410px; left: 2px;">Top Answers</button>
-     <div class="score" id="score">
-       <div class="score-header">
-         <div class="title">Top Answers</div>
+     <!-- Clear Local Storage Button -->
+
+     <button onclick="deleteutopia();"> Click me</button>
+     <!-- <div id="clearOverlay"></div>
+     <button data-clear-target="#clear" style="margin-top: 410px; left: 2px;" > Delete Utopia</button>
+     <div class="clear" id="clear">
+       <div class="clear-header">
+         <div class="title"> Delete Utopia</div>
    
        </div>
-       <div class="score-body">
+       <div class="clear-body">
          
-     Top Answers will be displayed based on the submitted entries!
        </div>
-     </div>
+     </div>  -->
   
    <!-- Search bar -->
     <form autocomplete="off">
@@ -253,48 +254,48 @@ function closeViewall(viewall) {
   viewallOverlay.classList.remove('active')
 }
 
-//Top Answers - Score button
-const openScoreButtons = document.querySelectorAll('[data-score-target]')
-const closeScoreButtons = document.querySelectorAll('[data-close-score]')
-const scoreOverlay = document.getElementById('scoreOverlay')
+//Delete Utopia - clear local storage button
+// const openClearButtons = document.querySelectorAll('[data-clear-target]')
+// const closeClearButtons = document.querySelectorAll('[data-close-clear]')
+// const clearOverlay = document.getElementById('clearOverlay')
 
-openScoreButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const score = document.querySelector(button.dataset.scoreTarget)
-    openScore(score);
+// openClearButtons.forEach(button => {
+//   button.addEventListener('click', () => {
+//     const clear = document.querySelector(button.dataset.clearTarget)
+//     openClear(clear);
   
-  })
-})
+//   })
+// })
 
-scoreOverlay.addEventListener('click', () => {
-  const scores = document.querySelectorAll('.score.active')
-  scores.forEach(score => {
-    closeScore(score)
+// clearOverlay.addEventListener('click', () => {
+//   const clears = document.querySelectorAll('.clear.active')
+//   clears.forEach(clear => {
+//     closeClear(clear)
 
-  })
-})
+//   })
+// })
 
-closeScoreButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const score = button.closest('.score')
-    closeScore(score)
+// closeClearButtons.forEach(button => {
+//   button.addEventListener('click', () => {
+//     const clear = button.closest('.clear')
+//     closeClear(clear)
  
-  })
-})
+//   })
+// })
 
-function openScore(score) {
-  if (score == null) return
-  score.classList.add('active')
-  scoreOverlay.classList.add('active')
+// function openClear(clear) {
+//   if (clear == null) return
+//   clear.classList.add('active')
+//  clearOverlay.classList.add('active')
  
-}
+// }
 
-function closeScore(score) {
-  if (score == null) return
-  score.classList.remove('active')
-  scoreOverlay.classList.remove('active')
+// function closeClear(clear) {
+//   if (clear == null) return
+//   clear.classList.remove('active')
+//  clearOverlay.classList.remove('active')
  
-}
+// }
 
 let sortedAnswers = answers.sort();
 let input = document.getElementById("input");
@@ -329,12 +330,12 @@ let input = document.getElementById("input");
       });
 
       function displayAnswers(value) {
-        input.value = value;
+        // input.value = value;
         let entrycolor='';
-        var posY=Math.floor(Math.random() *800) + 1; // we give it a max height of 800 so that it can be seen on the smallest computer screen which is aprox that size.
-        var posX=Math.floor(Math.random() *800) + 1; 
-        var posL=Math.floor(Math.random() *800) + 1;
-        var posR=Math.floor(Math.random() *800) + 1;
+        var posY=Math.floor(Math.random() *600) + 1; // we give it a max height of 600 so that it can be seen on the smallest computer screen which is aprox that size.
+        var posX=Math.floor(Math.random() *900) + 1; 
+        var posL=Math.floor(Math.random() *900) + 1;
+        var posR=Math.floor(Math.random() *900) + 1;
         const box = document.createElement("div");
         box.id = 'entry' + Date.now();
         //box.id = "box";
@@ -370,31 +371,29 @@ let input = document.getElementById("input");
 
  function viewAll(){
 
+  //local storage
+  if(localStorage.length>0) 
+  {
+    for(var i=0; i<localStorage.length;i++) 
+     displayAnswers(localStorage.getItem(i));
+   
+  }
+  
   let entrylist=document.querySelectorAll(".entry");
   document.getElementById('viewall-body').innerHTML='';
   for(var i=0; i<entrylist.length;i++) {
-     
+    //localStorage.setItem('value', input.value);
     document.getElementById('viewall-body').innerHTML = document.getElementById('viewall-body').innerHTML + entrylist[i].innerHTML+'<br>';
-  
+    localStorage.setItem(i,entrylist[i].innerHTML);
+   
   }
 
- }
+}
 
+function deleteutopia(){
 
-//  //Local storage
-//  const input = document.querySelector("input"),
-//   h2 = document.querySelector("h2");
-
-//   h2.innerHTML = localStorage.getItem("value")
-
-// input.addEventListener("keyup",display);
-
-// function display(){
-
-//   localStorage.setItem('value', input.value)
-//   h2.innerHTML = localStorage.getItem("value")
-// }
-
+  localStorage.clear();
+}
     </script>
 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
