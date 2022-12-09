@@ -3,18 +3,22 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The land of Eden</title>
+  <title>The Land of Eden</title>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 
 
-  <!-- ResponsiveVoice -->
+  <!-- Scripts -->
 <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=dxLA1Br5"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script> 
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <!-- Project Sources: 
 background image: https://wallpaperaccess.com/futuristic-house
@@ -37,13 +41,13 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
 </head>
 
 
-<body onload="viewAll();">
+<body onload="initialize()">
  
   <h1> <br> The Land Of Eden: <br> The Land Of A Billion Minds <br> <br> </h1>
 
   <!-- Instruction Button -->
   <div id="overlay"></div>
-  <button data-modal-target="#modal" onclick="instructions()" style="margin-top: 370px; left: 2px;"> Instructions </button>
+  <button data-modal-target="#modal" onclick="instructions()" style="margin-top: 350px; left: 2px;"> Instructions </button>
   <div class="modal" id="modal">
     <div class="modal-header">
       <div class="title">Instructions</div>
@@ -62,7 +66,7 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
 
    <!-- View All Button -->
  <div id="viewallOverlay"></div> 
- <button data-viewall-target="#viewall" style="margin-top: 450px; left: 2px;" onclick ="viewAll();"> View All </button>
+ <button data-viewall-target="#viewall" style="margin-top: 400px; left: 2px;" onclick ="viewAll()"> View All </button>
  <div class="viewall" id="viewall">
    <div class="viewall-header">
      <div class="title"> View All Submisisons</div>
@@ -74,23 +78,11 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
 
 
      <!-- Clear Local Storage Button -->
-
-     <button onclick="deleteutopia();"> Click me</button>
-     <!-- <div id="clearOverlay"></div>
-     <button data-clear-target="#clear" style="margin-top: 410px; left: 2px;" > Delete Utopia</button>
-     <div class="clear" id="clear">
-       <div class="clear-header">
-         <div class="title"> Delete Utopia</div>
+     <button onclick="deleteutopia();" style="margin-top: 450px; left: 2px;"> Delete Utopia</button>
    
-       </div>
-       <div class="clear-body">
-         
-       </div>
-     </div>  -->
-  
    <!-- Search bar -->
     <form autocomplete="off">
-      <button class="mic-button" type = "button" onclick= "start();">
+      <button class="mic-button" type = "button" onclick= "start()">
         <ion-icon name="mic-sharp" size="large" style="justify-content:center"></ion-icon>
         </button>
       <div>
@@ -165,18 +157,30 @@ https://www.youtube.com/watch?v=MBaw_6cPmAw&t=60s  -->
        
       ];
 
+function initialize(){
+  if(localStorage.length>0) 
+  {
+   
+    for(var i=0; i<localStorage.length;i++){
+    document.getElementById('viewall-body').innerHTML = document.getElementById('viewall-body').innerHTML + localStorage.getItem(i)+'<br>';
+    displayAnswers(localStorage.getItem(i));
 
-function start() {
-
-responsiveVoice.speak("What would make the world a perfect place?" , "UK English Male")
-
+    }
+  }
 }
+// function start() {
 
-function instructions() {
+// responsiveVoice.speak("What would make the world a perfect place?" , "UK English Male")
 
-responsiveVoice.speak("Welcome to The Land of Eden! Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, and social class. Use the search bar to begin the creation of a new and perfect world. To do so, begin typing the words no, more, less, or better. To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions.", "UK English Male")
+// }
 
-}
+// function instructions() {
+
+// responsiveVoice.speak("Welcome to The Land of Eden! Together, we will create a utopia that caters to everyone's needs,regardless of race, gender, age, and social class. Use the search bar to begin the creation of a new and perfect world. To do so, begin typing the words no, more, less, or better. To use the text-to-speech feature, simply click on the microphone icon in the search bar for more instructions.", "UK English Male")
+
+// }
+
+
 //Instruction button
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
@@ -254,48 +258,6 @@ function closeViewall(viewall) {
   viewallOverlay.classList.remove('active')
 }
 
-//Delete Utopia - clear local storage button
-// const openClearButtons = document.querySelectorAll('[data-clear-target]')
-// const closeClearButtons = document.querySelectorAll('[data-close-clear]')
-// const clearOverlay = document.getElementById('clearOverlay')
-
-// openClearButtons.forEach(button => {
-//   button.addEventListener('click', () => {
-//     const clear = document.querySelector(button.dataset.clearTarget)
-//     openClear(clear);
-  
-//   })
-// })
-
-// clearOverlay.addEventListener('click', () => {
-//   const clears = document.querySelectorAll('.clear.active')
-//   clears.forEach(clear => {
-//     closeClear(clear)
-
-//   })
-// })
-
-// closeClearButtons.forEach(button => {
-//   button.addEventListener('click', () => {
-//     const clear = button.closest('.clear')
-//     closeClear(clear)
- 
-//   })
-// })
-
-// function openClear(clear) {
-//   if (clear == null) return
-//   clear.classList.add('active')
-//  clearOverlay.classList.add('active')
- 
-// }
-
-// function closeClear(clear) {
-//   if (clear == null) return
-//   clear.classList.remove('active')
-//  clearOverlay.classList.remove('active')
- 
-// }
 
 let sortedAnswers = answers.sort();
 let input = document.getElementById("input");
@@ -307,12 +269,13 @@ let input = document.getElementById("input");
         //Initially remove all elements (so if user erases a letter or adds new letter then clean previous outputs)
         removeElements();
         for (let i of sortedAnswers) {
+         
           //convert input to lowercase and compare with each string
-
           if (
             i.toLowerCase().startsWith(input.value.toLowerCase()) &&
             input.value != ""
           ) {
+
             //create list element
             let listItem = document.createElement("li");
             listItem.classList.add("list-items");
@@ -322,7 +285,8 @@ let input = document.getElementById("input");
             //Display matched part in bold
             let word = "<b>" + i.substr(0, input.value.length) + "</b>";
             word += i.substr(input.value.length);
-            //display the value in array
+            
+            //Display the value in array
             listItem.innerHTML = word;
             document.querySelector(".list").appendChild(listItem);
           }
@@ -330,15 +294,19 @@ let input = document.getElementById("input");
       });
 
       function displayAnswers(value) {
-        // input.value = value;
+
+        input.value = value;
         let entrycolor='';
-        var posY=Math.floor(Math.random() *600) + 1; // we give it a max height of 600 so that it can be seen on the smallest computer screen which is aprox that size.
+       
+        // we give posY a max height of 600 so that it can be seen on the smallest computer screen which is aprox that size.
+        var posY=Math.floor(Math.random() *600) + 1; 
         var posX=Math.floor(Math.random() *900) + 1; 
         var posL=Math.floor(Math.random() *900) + 1;
         var posR=Math.floor(Math.random() *900) + 1;
+       
         const box = document.createElement("div");
+        
         box.id = 'entry' + Date.now();
-        //box.id = "box";
         box.innerHTML=value;
         
         switch(value.slice(0,2)) {
@@ -353,7 +321,6 @@ let input = document.getElementById("input");
         box.setAttribute('style','top:'+posX+'px; bottom:'+posY+'px;'+'left:'+posL+'px; right:'+posR+'px; background-color:'+entrycolor+';');
         
         document.getElementById('entry').appendChild(box);
-        //document.getElementById('entry').innerHTML = document.getElementById('entry').innerHTML + value + "<br>";
         document.getElementById('input').value = '';
      
         removeElements();
@@ -361,26 +328,23 @@ let input = document.getElementById("input");
       }
 
       function removeElements() {
+        
         //clear all the item
         let items = document.querySelectorAll(".list-items");
         items.forEach((item) => {
           item.remove();
         });
+
       }
 
 
  function viewAll(){
 
-  //local storage
-  if(localStorage.length>0) 
-  {
-    for(var i=0; i<localStorage.length;i++) 
-     displayAnswers(localStorage.getItem(i));
-   
-  }
-  
-  let entrylist=document.querySelectorAll(".entry");
   document.getElementById('viewall-body').innerHTML='';
+
+  let entrylist=document.querySelectorAll(".entry");
+ 
+  
   for(var i=0; i<entrylist.length;i++) {
     //localStorage.setItem('value', input.value);
     document.getElementById('viewall-body').innerHTML = document.getElementById('viewall-body').innerHTML + entrylist[i].innerHTML+'<br>';
@@ -393,11 +357,16 @@ let input = document.getElementById("input");
 function deleteutopia(){
 
   localStorage.clear();
+  document.getElementById('viewall-body').innerHTML='';
+  let items = document.querySelectorAll(".entry");
+        items.forEach((item) => {
+          item.remove();
+        });
 }
+
     </script>
 
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>
